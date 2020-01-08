@@ -1,0 +1,444 @@
+/**
+* @author Elvinsys
+* @version 2019年5月21日 上午11:32:41
+* @Description：JavaSE——关于循环结构的例程
+*	程序包含三种结构：顺序结构、选择结构、循环结构，这里是循环结构的例程
+*	循环结构有三种，for( ; ;){} , while(){} , do{}while();	
+*/
+
+/*
+ * 	例程编号：
+ * 	描述：
+ * 	说明：
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		System.out.println("这只是一个例程模板");
+	}
+}
+
+/*
+ * 	例程编号：026
+ * 	描述：
+ * 		用for语句和while语句，输出10次HelloWorld
+ * 	说明：
+ * 		
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//for语句
+		for (int i = 0; i < 10; i++) {
+			System.out.println("HelloWorld");
+		}
+		System.out.println("----------");//隔开
+		//while语句
+		int i = 0;
+		while(i<10) {
+			System.out.println("HelloWorld");
+			i++;
+		}
+	}
+}
+
+/*
+ * 	例程编号：027
+ * 	描述：
+ * 		用for语句和while语句，输出1-10的数据
+ * 	说明：
+ * 		
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//for语句
+		for (int i = 1; i <= 10; i++) {
+			System.out.println("i = "+i);
+		}
+		System.out.println("----------");//隔开
+		//while语句
+		int i = 1;
+		while(i<=10) {
+			System.out.println("i = "+i);
+			i++;
+		}
+	}
+}
+
+/*
+ * 	例程编号：028
+ * 	描述：
+ * 		用for语句和while语句，输出10-1的数据
+ * 	说明：
+ * 		
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//for语句
+		for (int i = 10; i >= 1; i--) {
+			System.out.println("i = "+i);
+		}
+		System.out.println("----------");//隔开
+		//while语句
+		int i = 10;
+		while(i>=1) {
+			System.out.println("i = "+i);
+			i--;
+		}
+	}
+}
+
+/*
+ * 	例程编号：029
+ * 	描述：
+ * 		用for语句和while语句，求1-10的和
+ * 	说明：
+ * 		
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//for语句
+		int sum = 0;
+		for (int i = 1; i <= 10; i++) {
+			sum += i;
+		}
+		System.out.println("sum = "+sum);//sum = 55
+		System.out.println("----------");
+		//while语句
+		sum = 0;
+		int i = 1;
+		while(i<=10) {
+			sum += i ;
+			i++;
+		}
+		System.out.println("sum = "+sum);
+	}
+}
+
+/*
+ * 	例程编号：030
+ * 	描述：
+ * 		用for语句和while语句，求1-100的和
+ * 	说明：
+ * 		
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//for语句
+		int sum = 0;
+		for (int i = 1; i <= 100; i++) {
+			sum += i;
+		}
+		System.out.println("sum = "+sum);//sum = 5050
+		System.out.println("----------");//隔开
+		//while语句
+		sum = 0;
+		int i = 1;
+		while(i<=100) {
+			sum += i;
+			i++;
+		}
+		System.out.println("sum = "+sum);
+	}
+}
+
+/*
+ * 	例程编号：031
+ * 	描述：
+ * 		用for语句和while语句，求1-100的偶数和
+ * 	说明：
+ * 		
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//for语句
+		int sum = 0;
+		for(int i = 1; i <=100; i++) {
+			if(i%2==0) {
+				sum +=i;
+			}
+		}
+		System.out.println("1~100的偶数和是："+sum);//2550
+		System.out.println("----------");
+		//while语句
+		sum = 0;
+		int i = 1;
+		while(i<=100) {
+			if(i%2==0) {
+				sum += i;
+			}
+			i++;
+		}
+		System.out.println("1~100的偶数和是："+sum);
+	}
+}
+
+/*
+ * 	例程编号：032
+ * 	描述：
+ * 		用for语句和while语句，求1-100的奇数和
+ * 	说明：
+ * 		
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//for语句
+		int sum = 0;
+		for(int i = 1; i <=100; i++) {
+			if(i%2==1) {
+				sum +=i;
+			}
+		}
+		System.out.println("1~100的奇数和是："+sum);//2500
+		System.out.println("----------");//隔开
+		//while语句
+		sum = 0;
+		int i = 1;
+		while(i<=100) {
+			if(i%2==1) {
+				sum += i;
+			}
+			i++;
+		}
+		System.out.println("1~100的奇数和是："+sum);
+	}
+}
+
+/*
+ * 	例程编号：033
+ * 	描述：
+ * 		用for语句和while语句，求5的阶乘
+ * 	说明：
+ * 		
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//for语句
+		int factorial = 1;
+		for(int i = 1; i <=5; i++) {
+			factorial *= i;
+		}
+		System.out.println("1~5的阶乘是："+factorial);//2500
+		System.out.println("----------");//隔开
+		//while语句
+		factorial = 1;
+		int i = 1;
+		while(i<=5) {
+			factorial *= i;
+			i++;
+		}
+		System.out.println("1~5的阶乘是："+factorial);
+		
+	}
+}
+
+/*
+ * 	例程编号：034
+ * 	描述：
+ * 		用for语句，打印九九乘法表
+ * 	说明：
+ * 		
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		for (int i = 1;i <=9;i++) {
+			for (int j = 1; j <=i; j++) {
+				System.out.print(j+"x"+i+"="+j*i+'\t');
+			}
+			System.out.println("");
+		}
+	}
+}
+
+/*
+ * 	例程编号：035
+ * 	描述：
+ * 		用for语句和while语句，在控制台上打印水仙花数，并统计水仙花数的个数
+ * 	说明：
+ * 		水仙花数，是一个3位数的整数，其个位数的立方+十位数的立方+百位数的立方=其本身
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//for语句
+		int dig_1 = 0;//取其个位数
+		int dig_2 = 0;//取其十位数
+		int dig_3 = 0;//取其百位数
+		int temp = 0;
+		System.out.println("水仙花数，有以下这些数：");
+		for(int i = 100; i <=1000; i++) {
+			dig_1 = i%10;//取其个位数
+			dig_2 = i/10%10;//取其十位数
+			dig_3 = i/100%10;//取其百位数
+			if(dig_1*dig_1*dig_1+dig_2*dig_2*dig_2+dig_3*dig_3*dig_3==i) {
+				System.out.println(i);
+				temp++;
+			}
+		}
+		System.out.println("总共有水仙花数"+temp+"个");
+		System.out.println("----------");//隔开
+		//while语句
+		int i = 100;
+		temp = 0;
+		while(i<1000) {
+			dig_1 = i%10;//取其个位数
+			dig_2 = i/10%10;//取其十位数
+			dig_3 = i/100%10;//取其百位数
+			if(dig_1*dig_1*dig_1+dig_2*dig_2*dig_2+dig_3*dig_3*dig_3==i) {
+				System.out.println(i);
+				temp++;
+			}
+			i++;
+		}
+		System.out.println("总共有水仙花数"+temp+"个");
+	}
+}
+
+/*
+ * 	例程编号：036
+ * 	描述：
+ * 		用for语句和while语句，在控制台上打印五位数的回文数，并统计个数
+ * 	说明：
+ * 		五位数的回文数：
+ * 			1）个位=万位
+ * 			2）十位=千位
+ * 			3）个位+十位+千位+万位=百位
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//for语句
+		int dig_1 = 0;
+		int dig_2 = 0;
+		int dig_3 = 0;
+		int dig_4 = 0;
+		int dig_5 = 0;
+		int temp = 0;
+		System.out.println("有以下这些五位数的回文数：");
+		for (int i = 10000; i < 100000; i++) {
+			dig_1 = i%10;
+			dig_2 = i/10%10;
+			dig_3 = i/100%10;
+			dig_4 = i/1000%10;
+			dig_5 = i/10000%10;
+			if((dig_1==dig_5)&&(dig_2==dig_4)&&(dig_1*2+dig_2*2==dig_3)) {
+				System.out.println(i);
+				temp++;
+			}
+		}
+		System.out.println("共有"+temp+"个");
+		System.out.println("----------");
+		//while语句
+		temp = 0;
+		int i = 10000;
+		while(i<100000) {
+			dig_1 = i%10;
+			dig_2 = i/10%10;
+			dig_3 = i/100%10;
+			dig_4 = i/1000%10;
+			dig_5 = i/10000%10;
+			if((dig_1==dig_5)&&(dig_2==dig_4)&&(dig_1*2+dig_2*2==dig_3)) {
+				System.out.println(i);
+				temp++;
+			}
+			i++;
+		}
+		System.out.println("共有"+temp+"个");
+	}
+}
+
+/*
+ * 	例程编号：037
+ * 	描述：
+ * 		用for语句和while语句，统计1~1000之间满足以下条件的数
+ * 		1）x%3=2
+ * 		2）x%5=3
+ * 		3）x%7=2
+ * 	说明：
+ * 		
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//for语句
+		int temp = 0;
+		System.out.println("有以下这些数满足条件：");
+		for (int i = 1; i <= 1000; i++) {
+			if((i%3==2)&&(i%5==3)&&(i%7==2)) {
+				System.out.println(i);
+				temp++;
+			}
+		}
+		System.out.println("共有"+temp+"个数能满足条件");
+		System.out.println("----------");
+		//while语句
+		temp = 0;
+		int i = 1;
+		while(i<=1000) {
+			if((i%3==2)&&(i%5==3)&&(i%7==2)) {
+				System.out.println(i);
+				temp++;
+			}
+			i++;
+		}
+		System.out.println("共有"+temp+"个数能满足条件");
+	}
+}
+
+/*
+ * 	例程编号：038
+ * 	描述：
+ * 		while和do...while的区别
+ * 	说明：
+ * 		while语句是先判断条件，条件符合了再执行
+ * 		do...while语句是先执行，再判断条件，意思是，语句体至少会执行一次，即使条件不符合
+ * 		
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//while语句
+		int i = 0;
+		int sum = 0;
+		System.out.println("现在sum="+sum);
+		System.out.println("执行while");
+		while(i<0) {
+			sum++;
+		}
+		System.out.println("现在sum="+sum);
+		System.out.println("-----进行初始化-----");
+		i = 0;
+		sum = 0;
+		System.out.println("现在sum="+sum);
+
+		System.out.println("执行do...while");
+		do {
+			sum++;
+		}while(i<0);
+
+		System.out.println("现在sum="+sum);
+		
+	}	
+}
+

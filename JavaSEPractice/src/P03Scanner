@@ -1,0 +1,68 @@
+/**
+* @author Elvinsys
+* @version 2019年5月16日 下午3:25:03
+* @Description：JavaSE——Scanner的例程
+*/
+
+/*
+ * 	例程编号：
+ * 	描述：
+ * 	说明：
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		System.out.println("这只是一个例程模板");
+	}
+}
+
+/*
+ * 	例程编号：019
+ * 	描述：
+ * 		键盘输入数据
+ * 	说明：
+ * 		1）在程序最开始导包：import java.util.Scanner
+ * 		2）实例化Scanner类，构造方法填System.in说明是从键盘输入
+ * 		3）通过实例，获取数据
+ * 		4）获取完毕后，最好close()关闭端口
+ */
+//例程
+
+import java.util.Scanner;
+
+public class Demo{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		//键盘输入两个整数值，求最大值
+		System.out.println("请输入两个整数值：");
+		int n1 = sc.nextInt();
+		int n2 = sc.nextInt();
+		System.out.println("最大值是："+(n1>n2?n1:n2));
+		sc.close();
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

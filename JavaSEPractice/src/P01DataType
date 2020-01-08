@@ -1,0 +1,317 @@
+/**
+* @author Elvinsys
+* @version 2019年5月1日 下午2:04:52
+* @Description：JavaSE——关于数据类型的例程文档
+*/
+
+/*
+ * 	例程编号：
+ * 	描述：
+ * 	说明：
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		System.out.println("这只是一个例程模板");//这只是一个例程模板
+	}
+}
+
+/*
+ * 	例程编号：	001
+ * 	描述：
+ * 		一个简单的HelloWorld例程
+ * 	说明：
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		System.out.println("Hello World!");//Hello World!
+	}
+}
+
+/*
+ * 	例程编号：	002
+ * 	描述：
+ 		输出常量（字符串、字符、整数、小数、布尔、二进制、八进制、十六进制
+ * 	说明：
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		//字符串常量
+		System.out.println("HelloWorld");//HelloWorld
+		//字符常量
+		System.out.println('A');//A
+		//整数常量
+		System.out.println(12);//12
+		//小数常量
+		System.out.println(12.22);//12.22
+		//布尔常量
+		System.out.println(true);//true
+		//二进制常量，以0b开头
+		System.out.println(0b0011);//输出以十进制形式输出//3
+		//八进制常量，以0开头
+		System.out.println(00011);//输出以十进制形式输出//9
+		//十六进制常量，以0x开头
+		System.out.println(0x0011);//输出以十进制形式输出//17
+	}
+}
+
+/*
+ * 	例程编号：	003
+ * 	描述：
+ *		测试各种数据类型
+ * 			数据类型
+ * 				基本数据类型
+ * 					数值型
+ * 						整型
+ * 							字节型（byte）	短整型（short）	整型（int）	长整形（long）
+ * 						浮点型
+ * 							单精度浮点型（float）	双精度浮点型（double）
+ * 					字符型（char）
+ * 					布尔型（boolean）
+ * 				引用数据类型
+ * 					类（class）
+ * 					接口（interface）
+ * 					数组
+ * 	说明：
+ *		1）利用各数据类型的包装类求取值范围
+ * 		2）下面主要测试是Byte,Short,Integer,Long,Float,Double,Charater，除此之外还有Boolean
+ * 		3）包装类常用的常量和方法：_VALUE(取值范围),_toString(转为字符串)等等
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		//基本数据类型
+		//byte
+		byte by = -11;
+		System.out.println("定义的byte数据为："+by);//定义的byte数据为：-11
+		//byte的取值范围是-128~127，1个字节，也就是八位的数据
+		System.out.println("byte的取值范围是："+Byte.MIN_VALUE+"~"+Byte.MAX_VALUE);
+		//byte的取值范围是：-128~127
+		System.out.println("-----------");//隔开
+		
+		//short
+		short sh = 55;
+		System.out.println("定义的short为："+sh);//定义的short为：55
+		//short的范围是-32768~32767，2个字节，16位
+		System.out.println("short的取值范围是："+Short.MIN_VALUE+"~"+Short.MAX_VALUE);
+		//short的取值范围是：-32768~32767
+		System.out.println("----------");//隔开
+		
+		//int
+		int integer = 12;
+		System.out.println("定义的int数据为："+integer);//定义的int数据为：12
+		//int的取值范围是-2147483648~2147483647，正负21亿的范围，是4个字节，也就是32位
+		System.out.println("int的取值范围是："+Integer.MIN_VALUE+"~"+Integer.MAX_VALUE);
+		//int的取值范围是：-2147483648~2147483647
+		System.out.println("----------");//隔开
+		
+		//long
+		//long longData = 10000000000;//错误，必须在后面加上l或者L，因为小写像数字1，所以推荐大写的L
+		long longData = 10000000000L;
+		System.out.println("定义的long数据是："+longData);//定义的long数据是：10000000000
+		//long的取值范围是-9223372036854775808~9223372036854775807，正负9223千兆的范围，8个字节64位
+		System.out.println("long的取值范围是："+Long.MIN_VALUE+"~"+Long.MAX_VALUE);
+		System.out.println("----------");//隔开
+		
+		//float
+		//float floatData = 12.33;//错误，和长整形一样，必须在后面加f或者F
+		float floatData = 12.88F;
+		System.out.println("定义的float数据是："+floatData);
+		//float的取值范围,4字节32位
+		//_EXPONENT	float可能具有的指数的最大值和最小值,-126~127
+		//_VALUE	float的最大值和最小值,1.4E-45~3.4028235E38
+		//			书上是-3.4E38~3.4E38
+		System.out.println("float的指数取值范围是："+Float.MIN_EXPONENT+"~"+Float.MAX_EXPONENT);
+		System.out.println("float的取值范围是："+Float.MIN_VALUE+"~"+Float.MAX_VALUE);
+		System.out.println("----------");
+		
+		//双精度浮点型
+		double doubleData = 13.333333333333333;
+		System.out.println("定义的double数据是："+doubleData);
+		//取值范围，8字节64位
+		//_EXPONENT	double可能具有的指数的最大值和最小值,-1022~1023
+		//_VALUE	double的最大值和最小值,4.9E-324~1.797693148623157E308
+		//			书上是-1.7E308~1.7E308
+		System.out.println("double的指数取值范围是："+Double.MIN_EXPONENT+"~"+Double.MAX_EXPONENT);
+		System.out.println("double的取值范围是："+Double.MIN_VALUE+"~"+Double.MAX_VALUE);
+		System.out.println("----------");
+		
+		//字符型
+		char ch = 'a';
+		char ch2 = 97;
+		//不能是 char ch = 'ab';//应该用字符串String来定义
+		System.out.println("定义的char的ch数据是："+ch);//a
+		System.out.println("定义的char的ch2数据是："+ch2);//a
+		//可以把char取值范围内的整数直接赋值给char，输出的是对应ASCII中的字符
+		//取值范围	2个字节16位，符合Unicode编码
+		//_VALUE	直接输出0~255对应的ASCII中0和255的字符？
+		System.out.println("char的取值范围是："+Character.MIN_VALUE+"~"+Character.MAX_VALUE);
+		System.out.println("----------");//隔开
+		
+		//布尔型
+		boolean bool = true;
+		System.out.println("定义的boolean型的数据是："+bool);
+		//bool = bool+1;//不同于C语言，Java里的boolean无法和整数相加
+		System.out.println("----------");
+		
+		//引用数据类型（之后学到再测试
+	}
+}
+
+/*
+ * 	例程编号：004
+ * 	描述：
+ * 		1）验证数据过长可能出现的问题，数据溢出
+ * 		2）整型的最大值加1和加2
+ * 	说明：
+ * 		使用强制类型转换，防止数据溢出
+ * 			方式一：把max转换为long型
+ * 			方式二：把后面的数据转换为long型
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		int max = Integer.MAX_VALUE;//整型的最大值
+		System.out.println("整型的最大值："+max);
+		System.out.println("最大值加1："+(max+1));
+		System.out.println("最大值加2："+(max+2));
+		//上面加1和加2后，数据溢出了，为了能正确显示数据，修改代码：
+		System.out.println("----------");
+		//方式一：
+		System.out.println("最大值加1（改："+((long)max+1));
+		//方式二：
+		System.out.println("最大值加2（改："+(max+2L));
+	}
+}
+
+/*
+ * 	例程编号：005
+ * 	描述：两行代码的区别
+ * 	说明：
+ * 		第一行代码是，12.345本身就是一个float的数据，赋值给f1
+ * 		第二行代码是，12.345本来是一个double数据，通过强制转换后赋值给f2
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		float f1 = 12.345f;
+		float f2 = (float)12.345;
+	}
+}
+
+/*
+ * 	例程编号：006
+ * 	描述：
+ * 		代码的正确性
+ * 	说明：	
+ * 		1）错误的代码：b1和b2在相加前，被默认强转为int，因此相加之后的结果为int
+ * 		int数据无法赋值给byte的b3
+ * 		2）正确的代码：3和4是常量，常量相加，先计算出结果，再转换为合适的数据类型赋值
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		byte b1 = 3, b2 = 4;
+		//错误
+		//byte b3 = b1 + b2;
+		//正确
+		byte b4 = 3 + 4;
+	}
+}
+
+/*
+ * 	例程编号：007
+ * 	描述：
+ * 		修改错误代码，输出结果是什么
+ * 	说明：	
+ * 		1）byte的取值范围是-128~127，必须强转
+ * 		2）结果是-126
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		//错误
+		//byte b1 = 130;
+		byte b1 = (byte)130;
+		System.out.println("结果是："+b1);
+	}
+}
+
+/*
+ * 	例程编号：008
+ * 	描述：
+ * 		看结果写代码
+ * 	说明：	
+ * 		1）字符在ASCII里面的值（常用
+ * 			‘a’	97
+ * 			‘A’	65
+ * 			‘0’	48
+ * 		2）在输出是，任意数据类型跟在字符串后，都将成为字符串
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		//helloa1
+		System.out.println("hello"+'a'+1);
+		//98hello
+		System.out.println('a'+1+"helle");
+		//5 + 555
+		System.out.println("5 + 5"+5+5);
+		//10 = 5 + 5
+		System.out.println(5+5+" = 5 + 5");
+	}
+}
+
+/*
+ * 	例程编号：009
+ * 	描述：
+ * 		两个整数相除
+ * 	说明：
+ * 		两个整形数据相除，返回的结果还是整形，想得到小数的正确数据，要把其中一个整型强转为浮点型
+ * 		
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		int num1 = 3;
+		int num2 = 4;
+		System.out.println("3除以4，结果是："+num1/num2);
+		//结果是0，有问题啊
+		System.out.println("----------");
+		//或者
+		System.out.println("3除以4，结果是："+(float)(num1/num2));
+		//结果是0，即使把最终结果做强转，但强转钱，计算结果就是0了
+		System.out.println("----------");
+		//修改一下
+		System.out.println("3除以4，结果是："+3/4);
+		//结果还是0，和上面一个，两个整数相除的结果是整数，不是小数
+		System.out.println("----------");
+		//再改进一下
+		System.out.println("3除以4，结果是："+(float)num1/num2);
+		//结果是0.75,终于正常了
+		System.out.println("----------");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,174 @@
+/**
+* @author Elvinsys
+* @version 2019年5月28日 下午3:41:38
+* @Description：JavaSE——关于面向对象的例程2
+*	
+*	
+*/
+
+/*
+ * 	例程编号：
+ * 	描述：
+ * 	说明：
+ */
+ 
+/*
+ * 	例程编号：075
+ * 	描述：
+ * 		抽象类和接口类综合案例，运动员教练案例
+ * 	说明：
+ * 		具体类：
+ * 			乒乓球运动员，乒乓球教练
+ * 			篮球运动员（要会说英语），篮球教练（要会说英语）
+ * 		抽象类：
+ * 			运动员，教练
+ * 			人
+ * 		接口类：
+ * 			讲英语
+ * 		
+ */
+
+//例程
+//讲英语接口
+interface Speak{
+	public abstract void speakEnglish();
+}
+//人类抽象类
+abstract class Person{
+	private String name;
+	private int age;
+	public Person() {}
+	public Person(String name, int age) {
+		setName(name);
+		setAge(age);
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public void showInfo() {
+		System.out.println("这个人名字叫"+getName()+","+getAge()+"岁了。");
+	}
+	public abstract void eat();
+	public void sleep() {
+		System.out.println("所有人都要睡觉。");
+	}	
+}
+//运动员抽象类
+abstract class Player extends Person {
+	public Player() {}
+	public Player(String name, int age) {
+		super(name,age);
+	}
+	public abstract void study();
+}
+//教练抽象类
+abstract class Coach extends Person {
+	public Coach() {}
+	public Coach(String name, int age) {
+		super(name, age);
+	}
+	public abstract void teach();
+}
+//乒乓球运动员具体类
+class PingpangPlayer extends Player {
+	public PingpangPlayer() {}
+	public PingpangPlayer(String name, int age) {
+		super(name, age);
+	}
+	public void eat() {
+		System.out.println("乒乓球运动员吃泡面，喝自来水");
+	}
+	public void study() {
+		System.out.println("乒乓球运动员学习接球和发球");
+	}
+}
+//乒乓球教练具体类
+class PingpangCoach extends Coach {
+	public PingpangCoach() {}
+	public PingpangCoach(String name, int age) {
+		super(name, age);
+	}
+	public void eat() {
+		System.out.println("乒乓球教练吃佛跳墙，喝茅台");
+	}
+	public void teach() {
+		System.out.println("乒乓球教练教接球和发球");
+	}
+}
+//篮球运动员具体类（要讲英语）
+class BasketballPlayer extends Player implements Speak {
+	public BasketballPlayer() {}
+	public BasketballPlayer(String name, int age) {
+		super(name, age);
+	}
+	public void eat() {
+		System.out.println("篮球运动员吃牛肉，喝啤酒");
+	}
+	public void study() {
+		System.out.println("篮球运动员学运球和投篮");
+	}
+	public void speakEnglish() {
+		System.out.println("篮球运动员要懂得说英语");
+	}
+}
+//篮球教练具体类（要讲英语）
+class BasketballCoach extends Coach implements Speak {
+	public BasketballCoach() {}
+	public BasketballCoach(String name, int age) {
+		super(name, age);
+	}
+	public void eat() {
+		System.out.println("篮球教练吃日本料理，喝清酒");
+	}
+	public void teach() {
+		System.out.println("篮球教练教运球和投篮");
+	}
+	public void speakEnglish() {
+		System.out.println("篮球教练要懂得说英语");
+	}
+}
+
+public class Demo {
+	public static void main(String[] args) {
+		//测试乒乓球运动员
+		PingpangPlayer pp = new PingpangPlayer("孔令辉",44);
+		pp.showInfo();
+		pp.sleep();
+		pp.eat();
+		pp.study();
+		//pp.speakEnglish();//乒乓球运动员并不懂说英语
+		System.out.println("------");
+		//测试乒乓球教练
+		PingpangCoach pc = new PingpangCoach("刘国梁",43);
+		pc.showInfo();
+		pc.sleep();
+		pc.eat();
+		pc.teach();
+		//pc.speakEnglish();//乒乓球教练并不懂说英语
+		System.out.println("------");
+		//测试篮球运动员
+		BasketballPlayer bp = new BasketballPlayer("姚明",39);
+		bp.showInfo();
+		bp.sleep();
+		bp.eat();
+		bp.study();
+		bp.speakEnglish();//篮球运动员会说英语
+		System.out.println("------");
+		//测试篮球教练
+		BasketballCoach bc = new BasketballCoach("杜锋",38);
+		bc.showInfo();
+		bc.sleep();
+		bc.eat();
+		bc.teach();
+		bc.speakEnglish();//篮球教练会说英语
+	}
+}

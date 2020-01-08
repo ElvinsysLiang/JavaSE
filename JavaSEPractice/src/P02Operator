@@ -1,0 +1,366 @@
+/**
+* @author Elvinsys
+* @version 2019年5月3日 下午1:51:39
+* @Description：JavaSE——关于运算符的例程文档
+* 六种运算符：数学运算符，赋值运算符，比较运算符，逻辑运算符，位运算符，三目运算符
+*/
+
+/*
+ * 	例程编号：
+ * 	描述：
+ * 	说明：
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		System.out.println("这只是一个例程模板");
+	}
+}
+
+/*
+ * 	例程编号：010
+ * 	描述：
+ * 		7种算术运算符（+，-，*，/，%、++，--）的用法
+ * 	说明：
+ * 		
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		System.out.println("1+1="+(1+1));//1+1=2
+		//下面写法错误，这样写的话，就会输出1+1=11
+		//System.out.println("1+1="+1+1);
+		System.out.println("2-1="+(2-1));//2-1=1
+		System.out.println("2*3="+(2*3));//2*3=6
+		System.out.println("2/3="+(2/3f));//2/3=0.6666667
+		//下面写法错误，这样写的话，就会输出2/3=0
+		//System.out.println("2/3="+(2/3));
+		System.out.println("3%2="+(3%2));//3%2=1
+		int num = 3;
+		System.out.println("num="+num);//num=3
+		System.out.println("执行num++");
+		num++;
+		System.out.println("num++="+num);//num=4
+		//下面这样写的话，依然是输出num1++=3，并没有输出自增效果，是在输出后自增了
+		System.out.println("现在num的值是："+num);//现在num的值是：4
+		System.out.println("在Systemout执行num++："+num++);//在Systemout执行num++：4
+		System.out.println("现在num的值是："+num);//现在num的值是：5
+		System.out.println("执行num--");
+		num--;
+		System.out.println("现在num的值是："+num);//现在num的值是：4
+	}
+}
+
+/*
+ * 	例程编号：011
+ * 	描述：
+ * 		++，--的练习
+ * 	说明：
+ * 
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		int num1 = 3;
+		int num2 = 4;
+		int num3 = ++num1;
+		int num4 = num2--;
+		System.out.println(num1);//4//经过了num3运算后的结果
+		System.out.println(num2);//3//经过了num4运算后的结果
+		System.out.println(num3);//4//num1自增后赋值给num3
+		System.out.println(num4);//4//num2在自建前就赋值给num4
+	}
+}
+
+/*
+ * 	例程编号：012
+ * 	描述：
+ * 		6种赋值运算符（=，+=，-=，*=，/=，%=）的用法
+ * 	说明：
+ * 
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		//定义需要用到的变量
+		int n1 = 3, n2 = 4;
+		System.out.println("n2 = n1: "+(n2 = n1));//n2=n1//n2 = n1: 3
+		n1 = 3; n2 = 4;
+		System.out.println("n2 += n1: "+(n2 += n1));//n2=n2+n1//n2 += n1: 7
+		n1 = 3; n2 = 4;
+		System.out.println("n2 -= n1: "+(n2 -= n1));//n2=n2-n1//n2 -= n1: 1
+		n1 = 3; n2 = 4;
+		System.out.println("n2 *= n1: "+(n2 *= n1));//n2=n2*n1//n2 *= n1: 12
+		float f1 = 3, f2 = 4;
+		System.out.println("f2 /= f1: "+(f2 /= f1));//f2=f2/f1//n2 *= n1: 1.3333334
+		n1 = 3; n2 = 4;
+		System.out.println("n2 %= n1: "+(n2 %= n1));//n2=n2%n1//n2 %= n1: 1
+	}
+}
+
+/*
+ * 	例程编号：013
+ * 	描述：
+ * 		6种比较运算符（==，！=，>，>=，<，<=）的用法
+ * 		比较运算符的输出结果为boolean数据，需要注意的是，不能把“==”写成“=”
+ * 	说明：
+ * 
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		int n1 = 3;
+		int n2 = 4;
+		System.out.println("n1==n2: "+(n1==n2));//false
+		System.out.println("n1!=n2: "+(n1!=n2));//true
+		System.out.println("n1>n2: "+(n1>n2));//false
+		System.out.println("n1>=n2: "+(n1>=n2));//false
+		System.out.println("n1<n2: "+(n1<n2));//true
+		System.out.println("n1<=n2: "+(n1<=n2));//true
+	}
+}
+
+/*
+ * 	例程编号：014
+ * 	描述：
+ * 		6种逻辑运算符（&，|，^，！，&&，||）的用法
+ * 	说明：
+ * 		逻辑双与&&，逻辑双或||具有短路效应
+ * 		&&，碰到第一个false就认为结果是false了，不再继续进行后续的运算
+ * 		||，碰到第一个true就认为结果是true了，不再继续进行后续的运算
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		int n1 = 3, n2 = 4, n3 = 5;
+		//逻辑与	&
+		System.out.println((n1 < n2) & (n1 < n3));//true & true //true
+		System.out.println((n1 < n2) & (n1 > n3));//true & false //false
+		System.out.println((n1 > n2) & (n1 < n3));//false & true //false
+		System.out.println((n1 > n2) & (n1 > n3));//false & false //false
+		System.out.println("----------");//隔开
+		//逻辑或	|
+		System.out.println((n1 < n2) | (n1 < n3));//true | true //true
+		System.out.println((n1 < n2) | (n1 > n3));//true | false //true
+		System.out.println((n1 > n2) | (n1 < n3));//false | true //true
+		System.out.println((n1 > n2) | (n1 > n3));//false | false //false
+		System.out.println("----------");//隔开
+		//逻辑或	^
+		System.out.println((n1 < n2) ^ (n1 < n3));//true ^ true //false
+		System.out.println((n1 < n2) ^ (n1 > n3));//true ^ false //true
+		System.out.println((n1 > n2) ^ (n1 < n3));//false ^ true //true
+		System.out.println((n1 > n2) ^ (n1 > n3));//false ^ false //false
+		System.out.println("----------");//隔开
+		//逻辑或	!
+		System.out.println(!(n1 < n2));//!true //false
+		System.out.println(!(n1 > n2));//!false //true
+		System.out.println(!!(n1 < n2));//!!true //true
+		System.out.println(!!(n1 > n2));//!!false //false
+		System.out.println("----------");//隔开
+		//逻辑双与	&&
+		System.out.println((n1 < n2) && (n1 < n3));//true && true //true
+		System.out.println((n1 < n2) && (n1 > n3));//true && false //false
+		System.out.println((n1 > n2) && (n1 < n3));//false //false
+		System.out.println((n1 > n2) && (n1 > n3));//false //false
+		System.out.println("----------");//隔开
+		//逻辑双或	||
+		System.out.println((n1 < n2) || (n1 < n3));//true //true
+		System.out.println((n1 < n2) || (n1 > n3));//true //true
+		System.out.println((n1 > n2) || (n1 < n3));//false | true //true
+		System.out.println((n1 > n2) || (n1 > n3));//false | false //false
+		System.out.println("----------");//隔开
+	}
+}
+
+/*
+ * 	例程编号：015
+ * 	描述：
+ * 		&&和||的短路效应
+ * 	说明：
+ * 		逻辑双与&&，逻辑双或||具有短路效应
+ * 		&&，碰到第一个false就认为结果是false了，不再继续进行后续的运算
+ * 		||，碰到第一个true就认为结果是true了，不再继续进行后续的运算
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		int n1 = 3;
+		int n2 = 4;
+		int n3 = 5;
+		
+		//&&的短路效应
+		System.out.println("现在n1="+n1+",n2="+n2+",n3="+n3);
+		System.out.println("执行(n1 < n2) && (n1++ < n3)操作");//true&&true//true
+		System.out.println((n1 < n2) && (n1++ < n3));
+		System.out.println("此时，n1="+n1);//n1=4
+		System.out.println("----------");
+		
+		n1 = 3;
+		n2 = 4;
+		n3 = 5;
+		System.out.println("执行初始化n1="+n1+",n2="+n2+",n3="+n3);
+		System.out.println("执行(n1 > n2) && (n1++ < n3)操作");//false//false
+		System.out.println((n1 > n2) && (n1++ < n3));
+		System.out.println("此时，n1="+n1);//n1=3//n1并没有自增
+		System.out.println("----------");
+		
+		//||的短路效应
+		n1 = 3;
+		n2 = 4;
+		n3 = 5;
+		System.out.println("执行初始化n1="+n1+",n2="+n2+",n3="+n3);
+		System.out.println("执行(n1 > n2) || (n1++ < n3)操作");//false||true//true
+		System.out.println((n1 > n2) || (n1++ < n3));
+		System.out.println("此时，n1="+n1);//n1=4
+		System.out.println("----------");
+		
+		n1 = 3;
+		n2 = 4;
+		n3 = 5;
+		System.out.println("执行初始化n1="+n1+",n2="+n2+",n3="+n3);
+		System.out.println("执行(n1 < n2) || (n1++ < n3)操作");//true//true
+		System.out.println((n1 < n2) || (n1++ < n3));
+		System.out.println("此时，n1="+n1);//n1=3//n1并没有自增
+		System.out.println("----------");
+	}
+}
+
+/*
+ * 	例程编号：016
+ * 	描述：
+ * 		4种位运算符（&，|，^，~）的用法
+ * 	说明：
+ * 		位运算符只适用于byte，short，int，char，long
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		int n1 = 3;
+		int n2 = 4;
+		System.out.println("n1 = "+n1+" = "+Integer.toBinaryString(n1));
+		System.out.println("n2 = "+n2+" = "+Integer.toBinaryString(n2));
+		System.out.println("n1 & n2 = "+(n1 & n2));//0011 & 0100 //0
+		System.out.println("n1 | n2 = "+(n1 | n2));//0011 | 0100 //0111
+		System.out.println("n1 ^ n2 = "+(n1 ^ n2));//0011 ^ 0100 //0111
+		System.out.println("~n1 = "+(~n1));//~0011 //1100
+		System.out.println("----------");
+		//一个数据对另一个数据异或两次，其结果不变
+		System.out.println("n1 = "+n1);
+		System.out.println("n2 = "+n2);
+		System.out.println("n1^n2^n2 = "+(n1^n2^n2));
+		System.out.println("n2^n1^n1 = "+(n2^n1^n1));
+	}
+}
+
+/*
+ * 	例程编号：017
+ * 	描述：
+ * 		整型变量数据交换的4种方法
+ * 	说明：
+ * 		1）利用第三个变量
+ * 		2）利用异或
+ * 		3）利用加减运算
+ * 		4）加减运算的修改
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		int n1 = 3;
+		int n2 = 4;
+		//方法1：利用第三个变量
+		System.out.println("转换前，n1 = "+n1+"，n2 = "+n2);//n1=3,n2=4
+		int n3 = n1;
+		n1 = n2;
+		n2 = n3;
+		System.out.println("交换后，n1 = "+n1+"，n2 = "+n2);//n1=4,n1=3
+		System.out.println("----------");//隔开
+		
+		//方法2：利用异或操作
+		System.out.println("转换前，n1 = "+n1+"，n2 = "+n2);//n1=4,n2=3
+		n1 = n1^n2;
+		n2 = n1^n2;
+		n1 = n1^n2;
+		System.out.println("交换后，n1 = "+n1+"，n2 = "+n2);//n1=3,n1=4
+		System.out.println("----------");//隔开
+		
+		//方法3：利用加减
+		System.out.println("转换前，n1 = "+n1+"，n2 = "+n2);//n1=3,n2=4
+		n1 = n1+n2;
+		n2 = n1-n2;
+		n1 = n1-n2;
+		System.out.println("交换后，n1 = "+n1+"，n2 = "+n2);//n1=4,n1=3
+		System.out.println("----------");//隔开
+		
+		//方法4：方法3的修改
+		System.out.println("转换前，n1 = "+n1+"，n2 = "+n2);//n1=4,n2=3
+		n2 = (n1+n2)-(n1=n2);
+		System.out.println("交换后，n1 = "+n1+"，n2 = "+n2);//n1=3,n1=4
+		System.out.println("----------");//隔开
+	}
+}
+
+/*
+ * 	例程编号：018
+ * 	描述：
+ * 		三目运算符的用法
+ * 	说明：
+ * 		1）求两个整数最大值
+ * 		2）求三个整数最大值，方法1
+ * 		3）求三个整数最大值，方法2
+ * 		4）求三个整数最大值，方法3
+ * 		5）用三目运算符做条件判断，再执行其他分支
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		//利用三目运算符，比较两个整形变量的大小
+		int n1 = 3;
+		int n2 = 4;
+		int max = (n1>n2)?n1:n2;
+		System.out.println("最大值是："+max);
+		
+		//利用三目运算符，求三个整数的最大值,方法1
+		int n3 = 5;
+		max = (n1>n2)?n1:n2;
+		max = (max>n3)?max:n3;
+		System.out.println("最大值是："+max);
+		
+		//利用三目运算符，求三个整数的最大值，方法2
+		max = (((n1>n2)?n1:n2)>n3?((n1>n2)?n1:n2):n3);
+		System.out.println("最大值是："+max);
+		
+		//利用三目运算符，求三个整数的最大值，方法3
+		max = (n1>n2)?((n1>n3)?n1:n3):((n2>n3)?n2:n3);
+		//一下这样写，有错
+		//max = (n1>n2)?(((n1>n3)?n1:n3):((n2>n3)?n2:n3));
+		System.out.println("最大值是："+max);
+		
+		//用三目运算符做条件判断，再执行其他分支
+		boolean flag = true;
+		flag = (n1>n2)?true:false;
+		System.out.println("flag = "+flag);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

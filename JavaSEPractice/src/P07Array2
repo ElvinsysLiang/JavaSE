@@ -1,0 +1,143 @@
+
+/**
+* @author Elvinsys
+* @version 2019年5月29日 下午4:34:42
+* @Description：JavaSE——关于二维数组的例程
+*	
+*	
+*/
+
+/*
+ * 	例程编号：
+ * 	描述：
+ * 	说明：
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		System.out.println("这只是一个例程模板");
+	}
+}
+
+/*
+ * 	例程编号：049
+ * 	描述：
+ * 		以下代码的区别：
+ * 			int x;
+ * 			int x, y;
+ * 			int[] x, y[];
+ * 	说明：
+ * 		第一行代码是声明一个int数据x
+ * 		第二行代码是声明两个int数据，x和y
+ * 		第三行代码是声明一个一维数组x，一个二维数组y
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		
+	}
+}
+
+/*
+ * 	例程编号：050
+ * 	描述：
+ * 		动态初始化一个2行3列二维数组int[][] array2
+ * 		打印第一个一维数组的地址
+ * 		打印第二个一维数组的第二个元素
+ * 	说明：
+ * 		二维数组，格式一：int[][] array2 = new int[m][n];
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//动态初始化一个[2][3]的二维数组
+		int[][] array2 = new int[2][3];
+		//给二维数组赋初值
+		for(int i = 0; i < 2; i++) {
+			for(int j = 0; j <3; j++) {
+				array2[i][j] = i+j;
+			}
+		}
+		//第一个一维数组的地址
+		System.out.println("array2[0] = "+array2[0]);
+		//第二个一维数组的第二个元素值
+		System.out.println("array2[1][1] = "+array2[1][1]);
+		
+	}
+}
+
+/*
+ * 	例程编号：051
+ * 	描述：
+ * 		1）动态初始化一个二维数组；
+ * 		2）这个二维数组是三行；
+ * 		3）每行的列数分别是2,3,1列
+ * 		4）数据随便赋值
+ * 		5）三个一维数组的地址，和二维数组的地址
+ * 	说明：
+ * 		int[][] array2 = new int[3][];
+ * 		array2[0] = new int[2];
+ * 		...
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//动态初始化二维数组
+		int[][] array2 = new int[3][];
+		array2[0] = new int[2];//动态初始化第一个一维数组
+		array2[1] = new int[3];//动态初始化第二个一维数组
+		array2[2] = new int[1];//动态初始化第三个一维数组
+		
+		array2[0][0] = 11;
+		array2[0][1] = 22;
+		array2[1][0] = 33;
+		array2[1][1] = 44;
+		array2[1][2] = 55;
+		array2[2][0] = 66;
+		
+		System.out.println("array2 = "+array2);
+		System.out.println("array2[0] = "+array2[0]);
+		System.out.println("array2[1] = "+array2[1]);
+		System.out.println("array2[2] = "+array2[2]);
+	}
+}
+
+/*
+ * 	例程编号：052
+ * 	描述：
+ * 		1）动态初始化一个二维数组array[3][],分别2列，3列，1列
+ * 		2）元素值是他的行与列之和
+ * 		2）二维数组的遍历
+ * 	说明：
+ * 		int[][] array2 = new int[3][];
+ * 		array2[0] = new int[2];
+ * 		...
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//动态初始化二维数组，给数组分配堆内存空间
+		int[][] array2 = new int[3][];
+		array2[0] = new int[2];//动态初始化第一个一维数组
+		array2[1] = new int[3];//动态初始化第二个一维数组
+		array2[2] = new int[1];//动态初始化第三个一维数组
+		//二维数组赋值
+		for(int i =0; i < array2.length; i++) {
+			for(int j=0; j < array2[i].length; j++) {
+				array2[i][j]=i+j;
+			}
+		}
+		//二维数组的遍历
+		for(int i = 0; i < array2.length; i++) {
+			for(int j = 0; j < array2[i].length; j++) {
+				System.out.print("array2["+i+"]["+j+"] = "+array2[i][j]+'\t');
+			}
+			System.out.println("");
+		}
+	}
+}
+

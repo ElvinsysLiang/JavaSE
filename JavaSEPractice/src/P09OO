@@ -1,0 +1,1525 @@
+/**
+* @author Elvinsys
+* @version 2019年5月29日 下午7:10:53
+* @Description：JavaSE——关于面向对象的例程
+*	
+*	
+*/
+
+/*
+ * 	例程编号：
+ * 	描述：
+ * 	说明：
+ */
+//例程
+public class Demo{
+	public static void main(String[] args) {
+		System.out.println("这只是一个例程模板");
+	}
+}
+
+/*
+ * 	例程编号：060
+ * 	描述：
+ * 		定义一个学生类，并在Demo类中进行测试
+ * 		学生类：
+ * 			属性
+ * 				private String name
+ * 				private int age
+ * 			构造方法
+ * 				无参构造
+ * 				带参构造
+ * 			方法
+ * 				get/setName（）
+ * 				get/setAge（）
+ * 				show（）
+ * 	说明：
+ * 		
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//用无参方式实例化一个学生类
+		Student st1 = new Student();
+		//给成员变量赋初值
+		st1.setName("Jaco");
+		st1.setAge(11);
+		st1.show();
+		System.out.println("----------");
+		//用带参构造实例化一个学生类
+		Student st2 = new Student("Liy", 14);
+		st2.show();
+	}
+}
+
+class Student {
+	//成员变量
+	private String name;
+	private int age;
+	//构造方法
+	public Student() {}
+	public Student(String name, int age) {
+		setName(name);
+		setAge(age);
+	}
+	//成员方法
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public void show() {
+		System.out.println("这位同学叫"+getName()+"，他现在"+getAge()+"了");
+	}
+}
+
+/*
+ * 	例程编号：061
+ * 	描述：
+ * 		匿名对象实例
+ * 	说明：
+ * 		只使用一次该对象的方法
+ * 		用完就没存在意义的可怜对象
+ * 		用完之后就想尽快资源回收
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//现在想用NonameShow来调用method方法
+		//但要调用method方法就要先实例化Noname类
+		Noname nn = new Noname();
+		//然后把NonameShow类实例化
+		NonameShow ns = new NonameShow();
+		//然后再把nn对象传入到NonameShow的method方法的形参中
+		ns.method(nn);
+		//但是，如果要多次用到这个方法，就要多次实例化Noname类，不便于垃圾回收
+		//因此，这里用匿名对象来处理
+		System.out.println("----------");
+		new NonameShow().method(new Noname());
+	}
+}
+
+class Noname {
+	public void show() {
+		System.out.println("Hello World");
+	}
+}
+
+class NonameShow {
+	public void method(Noname n) {
+		n.show();
+	}
+}
+
+/*
+ * 	例程编号：062
+ * 	描述：
+ * 		方法中的形式参数分为两种：基本类型和引用类型
+ * 		1)形参是基本类型时，形参的改变，不会影响实参
+ * 		2)形参是引用类型时，形参的改变，会导致实参的改变
+ * 	说明：
+ * 		
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//1.形参是基本类型，形参改变不影响实参
+		int var1 = 1;
+		int var2 = 2;
+
+		System.out.println("实参的var1 = "+var1);
+		System.out.println("实参的var2 = "+var2);
+		System.out.println("调用方法，改变形参后：");
+		new Change().method(var1,var2);
+		System.out.println("实参的var1 = "+var1);
+		System.out.println("实参的var2 = "+var2);
+		System.out.println("----------");
+		
+		//2.形参是引用类型，形参改变影响实参
+		//首先，我们定义一个类
+		//然后，类里面有两个成员变量
+		//再用Change().method()方法进行调换位置
+		Change2 c = new Change2(3,4);
+
+		System.out.println("实参的c.var1 = "+c.var1);
+		System.out.println("实参的c.var2 = "+c.var2);
+		System.out.println("调用方法，改变形参后：");
+		new Change().method(c.var1,c.var2);
+		System.out.println("实参的c.var1 = "+c.var1);
+		System.out.println("实参的c.var2 = "+c.var2);
+		System.out.println("----------");
+		//然而，并没有什么卵用，因为类实例化后，成员变量依然是基本类型
+		//那，什么数据是引用类型呢？类，接口，数据
+		//于是，我们在Change类中定义一个方法（依然叫method，方法重载）
+		//用来调换Change2实例化出来的两个对象
+		Change2 c2 = new Change2(1,2);
+		Change2 c3 = new Change2(3,4);
+		System.out.println("实参的c2.var1 = "+c2.var1);
+		System.out.println("实参的c2.var2 = "+c2.var2);
+		System.out.println("实参的c3.var1 = "+c3.var1);
+		System.out.println("实参的c3.var2 = "+c3.var2);
+		System.out.println("调用方法，改变形参后：");
+		new Change().method(c2,c3);
+		System.out.println("实参的c2.var1 = "+c2.var1);
+		System.out.println("实参的c2.var2 = "+c2.var2);
+		System.out.println("实参的c3.var1 = "+c3.var1);
+		System.out.println("实参的c3.var2 = "+c3.var2);
+		System.out.println("----------");
+		//但，上面的代码依然没体现出，更改形参能是实参发生变化啊
+		//原因是，虽然类是引用类型，但只是作为地址的形参互换并不会发生任何变化
+		//那我们再搞个method，用来只是更改同一个对象中的两个成员变量之间的位置
+		Change2 c4 = new Change2(5,6);
+		System.out.println("实参的c4.var1 = "+c4.var1);
+		System.out.println("实参的c4.var2 = "+c4.var2);
+		System.out.println("调用方法，改变形参后：");
+		new Change().method(c4);
+		System.out.println("实参的c4.var1 = "+c4.var1);
+		System.out.println("实参的c4.var2 = "+c4.var2);
+		System.out.println("----------");
+		//那么，所谓的引用类型的形参，引发实际参数的改变
+		//本质上就是利用该参数的的值进行参数内容的变更
+	}
+}
+
+class Change {
+	public void method(int a, int b) {
+		System.out.println("形参a = "+a);
+		System.out.println("形参b = "+b);
+		
+		int temp = a;
+		a = b;
+		b = temp;
+		System.out.println("改变形参后");
+		System.out.println("形参a = "+a);
+		System.out.println("形参b = "+b);
+	}
+	public void method(Change2 c1, Change2 c2) {
+		Change2 temp = c1;
+		c1 = c2;
+		c2 = temp;
+	}
+	public void method(Change2 c1) {
+		int temp = c1.var1;
+		c1.var1 = c1.var2;
+		c1.var2 = temp;
+	}
+}
+
+class Change2 {
+	public int var1;
+	public int var2;
+	
+	public Change2() {
+		System.out.println("无参构造请自己对成员变量进行初始化");
+	}
+	public Change2(int var1, int var2) {
+		this.var1 = var1;
+		this.var2 = var2;
+	}
+}
+
+/*
+ * 	例程编号：063
+ * 	描述：
+ * 		关于构造方法的注意事项
+ * 	说明：
+ * 		1)构造方法名称要与类名相同
+ * 		2）构造方法分为无参构造和带参构造
+ * 		3）如果没写构造方法，系统默认给一个
+ * 		4）如果写了带参构造，系统就不会给无参构造了，要自己手动写一个
+ * 		5）构造方法一般用public修饰，但也可以protect或者private修饰
+ * 			（但是protect修饰时，只有子类可以new这个类
+ * 			（用private修饰时，并无意义
+ * 		6）构造方法不能有static修饰
+ * 		7）构造方法不能有返回值，因此不带返回值修饰符，连void都不许
+ * 		8）理论上，是可以加上return语句的
+ * 			（return不是用来返回数据，是用来结束程序，因此并无意义）
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		Person p1 = new Person();
+		
+		p1.show();
+		Person p2 = new Person("Liy", 14);
+		p2.show();
+	}
+}
+
+class Person {
+	private String name;
+	private int age;
+	//因为下面写了带参构造，因此这里必须手动写一个无参构造
+	public Person() {}
+	//用public修饰，没有static没有void没有返回值没有return的完美构造方法
+	public Person(String name, int age) {
+		this.name = name;
+		this.age = age;
+	}
+	public void show() {
+		System.out.println("名字是"+this.name+"，年龄是"+this.age);
+	}
+}
+
+/*
+ * 	例程编号：064
+ * 	描述：
+ * 		一个能体现以下几个方面的知识点的例程
+ * 		1）构造方法、
+ * 		2）this、
+ * 		3）static、
+ * 		4）权限修饰符、
+ * 		5）形式参数（基本类型与引用类型）、
+ * 		6）静态变量、局部变量和成员变量
+ * 		7）一维数组
+ * 		
+ * 		于是，我们现在要做一个简单的，员工管理系统
+ * 		员工类，用于保存每个员工信息
+ * 			class Employee 
+ * 
+ * 		静态成员变量，处于静态区，不会被重复定义，用来统计员工的总数量
+ * 			private static int count = 0;
+ * 			private static double[] salaryTable = new double[1000];
+ * 		
+ * 		成员变量
+ * 			private String name;//员工姓名
+ * 			private int age;//员工年龄
+ * 			private String department;//员工部门
+ * 			private String number;//员工编号
+ * 			private double salary;//员工工资
+ * 		
+ * 		构造方法
+ * 			无参构造自己填上，因为下面有带参构造
+ * 			public Employee();
+ * 			带参构造，除了员工编号是系统自动分配以外，其他均为管理员录入
+ * 			public Employee(String name, int age,String department, double salary);
+ * 
+ * 		成员方法
+ * 			public static int getCount();
+ * 			public void addCount();
+ * 			public static double[] getSalaryTable();
+ * 			public void setSalaryTable();
+ * 			public String getName() ;
+ * 			public void setName(String name);
+ * 			public int getAge();
+ * 			public void setAge(int age);
+ * 			public String getDepartment();
+ * 			public void setDepartment(String department);
+ * 			public String getNumber();
+ * 			public void setNumber();
+ * 			public double getSalary();
+ * 			public void setSalary(double salary);
+ * 			public void printInfo();
+ * 			
+ * 		工资工具类,用于对工资的处理
+ * 		class SalaryTools
+ * 
+ * 		构造方法,防止该类被实例化
+ * 			private SalaryTools();
+ * 
+ * 		成员方法
+ * 			public static double getOneMonthSum();
+ * 			public static double getAverage();
+ * 	说明：
+ * 		
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//公司成立了，第一个员工是老板，我们用无参构造给他登记一下
+		Employee p0 = new Employee();
+		p0.setName("Jaco");
+		p0.setAge(40);
+		p0.setDepartment("GM");
+		p0.setSalary(30000.00);
+		p0.setNumber();
+		p0.setSalaryTable();
+		p0.addCount();
+		p0.printInfo();
+		System.out.println("----------");
+		//现在招到了一个业务人员，给员工用带参构造登记一下
+		Employee p1 = new Employee("Xiaoming", 35, "BD", 15000.00);
+		p1.printInfo();
+		System.out.println("----------");
+		//又招了个搞卫生阿姨，给阿姨用带参构造登记一下
+		Employee p2 = new Employee("Moyt", 50, "MD", 5000.00);
+		p2.printInfo();
+		System.out.println("----------");
+		//月底了，统计一下公司的人数，要支付的工资总额，以及员工平均工资
+		System.out.println("工资人数是："+Employee.getCount());
+		System.out.println("这个月应付工资总额为："+SalaryTools.getOneMonthSum());
+		System.out.println("公司员工平均工资为："+SalaryTools.getAverage());
+	}
+}
+
+
+//员工类，用于保存每个员工信息
+class Employee {
+	//静态成员变量，处于静态区，不会被重复定义，用来统计员工的总数量
+	private static int count = 0;
+	private static double[] salaryTable = new double[1000];
+	
+	//成员变量
+	private String name;//员工姓名
+	private int age;//员工年龄
+	private String department;//员工部门
+	private String number;//员工编号
+	private double salary;//员工工资
+	
+	//构造方法
+	//无参构造自己填上，因为下面有带参构造
+	public Employee(){}
+	//带参构造，除了员工编号是系统自动分配以外，其他均为管理员录入
+	public Employee(String name, int age,String department, double salary) {
+		setName(name);
+		setAge(age);
+		setDepartment(department);
+		setSalary(salary);
+		setNumber();
+		setSalaryTable();
+		addCount();
+	}
+	//成员方法
+	public static int getCount() {
+		return count;
+	}
+	public void addCount() {
+		count++;
+	}
+	public static double[] getSalaryTable() {
+		return salaryTable;
+	}
+	public void setSalaryTable() {
+		int index = getCount();
+		salaryTable[index] = salary;
+	}
+	public String getName() {
+		return name;//这里其实是this.name，只是省略了，下面一样
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber() {
+		number = department+'-'+count;
+	}
+	public double getSalary() {
+		return salary;
+	}
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+	public void printInfo() {
+		System.out.println("姓名："+getName());
+		System.out.println("年龄："+getAge());
+		System.out.println("所属部门："+getDepartment());
+		System.out.println("员工编号："+getNumber());
+		System.out.println("每月工资："+getSalary());
+	}
+}
+
+//工资工具类,用于对工资的处理
+class SalaryTools {
+	//构造方法,防止该类被实例化
+	private SalaryTools(){}
+	//成员方法
+	public static double getOneMonthSum() {
+		double sum = 0;
+		for(int i = 0; i < Employee.getCount();i++) {
+			sum += Employee.getSalaryTable()[i];
+		}
+		return sum;
+	}
+	public static double getAverage() {
+		return getOneMonthSum()/Employee.getCount();
+	}
+}
+
+/*
+ * 	例程编号：065
+ * 	描述：
+ * 		一个猜数字的例程，0~99以内的整数
+ * 	说明：
+ * 		1）要生成一个随机数，再与用户输入的随机数进行比较
+ * 		2）生成随机数的方法，到API中查找
+ */
+//例程
+
+//用户键盘输入，需要导包
+import java.util.Scanner;
+
+public class Demo {
+	public static void main(String[] args) {
+		//首先需要用于需要一个1~100的数字
+		//1.通过搜索API可知，random是Math类中的一个方法，用以生成一个大于等于0.1小于1的随机数，
+		//2.因为Math类继承于java.lang，因此不需要导包
+		//3.方法原型是public static double random(),因此可以直接用类名调用
+		int number=0;
+		int random = (int)(Math.random()*100+1);
+		System.out.print("请输入一个1~100的数字：");
+		Scanner s1 = new Scanner(System.in);
+		number = s1.nextInt();
+		while(number<1||number>100) {
+			System.out.print("您输入的数字有误，请输入1~100的数字:");
+			number = s1.nextInt();
+		}
+		while(number != random) {
+			if(number > random) {
+				System.out.print("猜大了，请重新输入：");
+			} else {
+				System.out.print("猜小了，请重新输入：");
+			}
+			number = s1.nextInt();
+			while(number<1||number>100) {
+				System.out.print("您输入的数字有误，请输入1~100的数字:");
+				number = s1.nextInt();
+			}
+		}
+		System.out.println("终于猜对了，真棒！");
+		s1.close();
+	}
+}
+
+/*
+ * 	例程编号：066
+ * 	描述：
+ * 		关于继承的简单例程
+ * 	说明：
+ * 		1）人类
+ * 			成员变量：姓名，年龄
+ * 			构造方法：无参构造，带参构造
+ * 			成员方法：成员变量的get/set，job()， show()
+ * 		2）学生类——继承自人类
+ * 			成员变量：继承人类，+成绩
+ * 			构造方法：无参构造，带参构造+成绩
+ * 			成员方法：继承人类，+get/set成绩，重写job（），重写show（）
+ * 		3）老师类——继承自人类
+ * 			成员变量：继承人类，+工资
+ * 			构造方法：无参构造，带参构造+工资
+ * 			成员方法：继承人类，+get/set工资，重写job（），重写show（）
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//测试人类，无参构造
+		Person p1 = new Person();
+		p1.setName("Jaco");
+		p1.setAge(14);
+		p1.show();
+		System.out.println("----------");
+		//测试人类，带参构造
+		Person p2 = new Person("Lily", 13);
+		p2.show();
+		System.out.println("---------");
+		//测试学生类，无参构造
+		Student s1 = new Student();
+		s1.setName("Mik");
+		s1.setAge(12);
+		s1.setScore(88.1f);
+		s1.show();
+		System.out.println("----------");
+		//测试学生类，带参构造
+		Student s2 = new Student("Cie", 11, 91.22f);
+		s2.show();
+		System.out.println("----------");
+		//测试老师类，无参构造
+		Teacher t1 = new Teacher();
+		t1.setName("Kiy");
+		t1.setAge(33);
+		t1.setSalary(4000f);
+		t1.show();
+		System.out.println("----------");
+		//测试老师类，带参构造
+		Teacher t2 = new Teacher("Fiby", 34, 2000f);
+		t2.show();
+		System.out.println("----------");
+		
+	}
+}
+
+class Person {
+	private String name;
+	private int age;
+	public Person() {}
+	public Person(String name, int age) {
+		setName(name);
+		setAge(age);
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public void job() {
+		System.out.println("吃喝拉撒.");
+	}
+	public void show() {
+		System.out.print("人的名字叫"+getName()+"，他的年龄是"+getAge()+"，工作是");
+		job();
+	}
+}
+
+class Student extends Person {
+	private float score;
+	public Student() {}
+	public Student(String name, int age, float score) {
+		super.setName(name);
+		super.setAge(age);
+		setScore(score);
+	}
+	public float getScore() {
+		return score;
+	}
+	public void setScore(float score) {
+		this.score = score;
+	}
+	public void job() {
+		System.out.println("学习.");
+	}
+	public void show() {
+		System.out.print("学生的名字叫"+getName()+"，他的年龄是"+getAge()+
+				"，成绩是"+getScore()+"，工作是");
+		job();
+	}
+}
+
+class Teacher extends Person {
+	private float salary;
+	public Teacher() {}
+	public Teacher(String name, int age, float salary) {
+		super.setName(name);
+		super.setAge(age);
+		setSalary(salary);
+	}
+	public float getSalary() {
+		return salary;
+	}
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
+	public void job() {
+		System.out.println("教书.");
+	}
+	public void show() {
+		System.out.print("老师的名字叫"+getName()+"，他的年龄是"+getAge()+
+				"，薪水有"+getSalary()+"，工作是");
+		job();
+	}
+}
+
+/*
+ * 	例程编号：067
+ * 	描述：
+ * 		关于继承的简单例程
+ * 	说明：
+ * 		1）动物类
+ * 			成员变量：姓名，年龄
+ * 			构造方法：无参构造，带参构造
+ * 			成员方法：成员变量的get/set，job()， show()
+ * 		2）猫类——继承自动物类
+ * 			成员变量：继承动物类
+ * 			构造方法：无参构造，带参构造
+ * 			成员方法：继承动物类，重写job（），重写show（）
+ * 		3）狗类——继承自动物类
+ * 			成员变量：继承人类，+工资
+ * 			构造方法：无参构造，带参构造
+ * 			成员方法：继承动物类，重写job（），重写show（）
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//测试无参构造动物类
+		Animal a1 = new Animal();
+		a1.setName("恐龙");
+		a1.setAge(100000);
+		a1.show();
+		System.out.println("----------");
+		//测试带参构造动物类
+		Animal a2 = new Animal("哥斯拉", 2000);
+		a2.show();
+		System.out.println("----------");
+		//测试无参构造猫类
+		Cat c1 = new Cat();
+		c1.setName("小白");
+		c1.setAge(2);
+		c1.show();
+		System.out.println("----------");
+		//测试带参构造猫类
+		Cat c2 = new Cat("小黑", 1);
+		c2.show();
+		System.out.println("----------");
+		//测试无参构造狗类
+		Dog d1 = new Dog();
+		d1.setName("阿旺");
+		d1.setAge(5);
+		d1.show();
+		System.out.println("----------");
+		//测试带参构造狗类
+		Dog d2 = new Dog("大黄", 6);
+		d2.show();
+		System.out.println("----------");
+	}
+}
+
+class Animal {
+	private String name;
+	private int age;
+	public Animal() {}
+	public Animal(String name, int age) {
+		setName(name);
+		setAge(age);
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public void job() {
+		System.out.println("吃饭睡觉");
+	}
+	public void show() {
+		System.out.print("动物的名字叫"+getName()+"，有"+getAge()+"岁那么大了，一天都晚都在");
+		job();
+	}
+}
+
+class Cat extends Animal {
+	public Cat() {}
+	public Cat(String name, int age) {
+		super.setName(name);
+		super.setAge(age);
+	}
+	public void job() {
+		System.out.println("卖萌");
+	}
+	public void show() {
+		System.out.print("猫的名字叫"+getName()+"，有"+getAge()+"那么大了，一天都晚都在");
+		job();
+	}
+}
+
+class Dog extends Animal {
+	public Dog() {}
+	public Dog(String name, int age) {
+		super.setName(name);
+		super.setAge(age);
+	}
+	public void job() {
+		System.out.println("看门");
+	}
+	public void show() {
+		System.out.print("狗的名字叫"+getName()+"，有"+getAge()+"那么大了，一天都晚都在");
+		job();
+	}
+}
+
+/*
+ * 	例程编号：068
+ * 	描述：
+ * 		写一个类叫MyArrayTools
+ * 	说明：
+ * 		1）生成帮助文档
+ * 		2）该工具类主要有四个功能
+ * 			遍历整形二维数组
+ * 			求整形二维数组的最大值
+ * 			求整形二维数组的最小值
+ * 			通过索引号查找元素内容
+ * 		3）每个文件只能有一个public类以及数个其他权限修饰的类，
+ * 			本例程为了能测试，因此demo类被public修饰，导出的doc帮助文件也只有Demo类
+ * 			要把Demo类删掉，把MyArrayTools单独放在一个文档中，并用public修饰
+ * 			在帮助文档中才能显示出MyArrayTools类中的信息
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		//测试MyArrayTools中的方法
+		int[] array = {12, 33, 41, 26, 77, 22};
+		MyArrayTools.printArray(array);
+		System.out.println("----------");
+		System.out.println("数组索引值为4的元素是："+MyArrayTools.searchByIndex(array, 4));
+		System.out.println("数组的最大值是："+MyArrayTools.searchMax(array));
+		System.out.println("数组的最小值是："+MyArrayTools.searchMin(array));
+	}
+}
+
+//其实应该架public修饰，并把该类定义在一个单独的文件内
+//本例程为了进行demo测试，故没用public修饰该类
+class MyArrayTools {
+	/**
+	 * 	构造方法用private修饰，防止该类被实例化
+	 */
+	private MyArrayTools() {}
+	/**
+	 * 	遍历数组
+	 * @param arr 整形二维数组的引用
+	 */
+	public static void printArray(int[] arr) {
+		System.out.println("开始遍历整形二维数组……");
+		for(int i = 0; i < arr.length; i++) {
+			if(i == 0) {
+				System.out.print("array["+arr.length+"] = {"+arr[i]+" ");
+				continue;
+			}
+			if(i == arr.length-1) {
+				System.out.println(arr[i]+"}");
+				break;
+			}
+			System.out.print(arr[i]+" ");
+		}
+	}
+	/**
+	 * 	通过索引号搜索整形二维数组的元素内容
+	 * @param arr 整形二维数组的引用
+	 * @param index 需要查找的元素的索引值
+	 * @return 返回索引元素的内容
+	 */
+	public static int searchByIndex(int[] arr, int index) {
+		if(index < 0 || index >= arr.length) {
+			System.out.println("索引号超出数组索引范围");
+			return -1;
+		}
+		return arr[index];
+	}
+	/**
+	 *	求整形二维数组中元素最大值
+	 * @param arr 整形二维数组的引用
+	 * @return 返回整形二维数组中元素最大值
+	 */
+	public static int searchMax(int[] arr) {
+		int max = arr[0];
+		for(int i = 1; i < arr.length; i++) {
+			if(max < arr[i]) {
+				max = arr[i];
+			}
+		}
+		return max;
+	}
+	/**
+	 *	求整形二维数组中元素最小值
+	 * @param arr 整形二维数组的引用
+	 * @return 返回整形二维数组元素中最小值
+	 */
+	public static int searchMin(int[] arr) {
+		int min = arr[0];
+		for(int i = 1; i < arr.length; i++) {
+			if (arr[i] < min) {
+				min = arr[i];
+			}
+		}
+		return min;
+	}
+}
+
+/*
+ * 	例程编号：069
+ * 	描述：
+ * 		面试题：
+ * 		A.final可以修饰什么，他们分别有什么特点？
+ * 		B.在父类中，被final修饰的成员变量，在子类中能被重新赋值吗
+ * 		C.被final修饰的引用数据类型，可以重新赋值吗
+ * 		D.被final修饰变量在什么时候初始化
+ * 	说明：
+ * 		A:
+ * 			1）final能修饰类、方法和变量
+ * 			2）	被final修饰的类不能被子类继承
+ * 				被final修饰的方法不能被重写
+ * 				被final修饰的变量不能被更改
+ * 		B:
+ * 			1）如果在子类中，成员变量没有被重新定义，则无法重新赋值
+ * 			2）如果在子类中，成员变量被重定义为不带fianl修饰符的变量，则可以更改赋值
+ * 		C:
+ * 			1）被final修饰的基本数据类型，无法被重新赋值
+ * 			2）被final修饰的引用数据类型，其地址无法被更改，但其对象的内容可以更改
+ * 		D:
+ * 			1）被final修饰的变量只能进行一次赋值操作
+ * 			2）可以在定义的时候，或者是在构造方法内进行初始化
+ */
+//例程
+
+public class Demo{
+	public static void main(String[] args) {
+		Ba2 b2 = new Ba2();
+		//可以访问父类被final修饰的成员变量
+		b2.methodB2();
+		Ba3 b3 = new Ba3();
+		//访问子类被重新定义在父类中被final定义的成员变量
+		b3.methodB5();
+		//修改了子类的那个成员变量
+		b3.methodB3();
+		//访问父类的成员变量
+		b3.methodB4();
+		//访问子类的成员变量
+		b3.methodB5();
+		Ca1 c1 = new Ca1();
+		//数组第一个元素的值
+		c1.methodC1();
+		//更改了arr的地址为arr2
+		c1.methodC2();
+		//arr[0]的值发生变化了，变成了arr2[0]的值
+		//也就是说arr和arr2同时指向了同一个数组
+		c1.methodC3();
+		//被final修饰的数组，数组地址无法更改，但可以更改里面的元素值
+		c1.methodC5();
+	}
+}
+
+//被final修饰的类无法被子类继承
+final class Aa1 {}
+//class Aa2 extends Aa1 {}//无法继承Aa1
+
+//被final修饰的方法无法被重写
+class Ab1 {
+	public final void method() {};
+}
+class Ab2 extends Ab1 {
+	//public void method() {};//无法重写父类中被final修饰的方法
+}
+
+//被final修饰的成员变量无法被更改
+class Ac1 {
+	public final int var = 1;
+	public Ac1() {
+		//this.var = 2;//无法对被final修饰的成员变量进行赋值
+	}
+}
+
+
+class Ba1 {
+	public final int var = 1;
+}
+//在子类中，没有重新定义同名的成员变量，是无法重新赋值
+class Ba2 extends Ba1 {
+	public void methodB1() {
+		//this.var = 2;//没有重新定义就不能重新赋值
+	}
+	public void methodB2() {
+		System.out.println(var);//但是，可以访问啊，说明已经继承了
+	}
+}
+//在子类中，重新定义同名的成员变量，则可以重新赋值
+class Ba3 extends Ba1 {
+	public int var = 2;//重新定义了
+	public void methodB3 () {
+		this.var = 3;//就可以重新赋值了
+	}
+	public void methodB4() {
+		System.out.println(super.var);//访问的是父类的var
+	}
+	public void methodB5() {
+		System.out.println(this.var);//访问的是子类的var
+	}
+}
+
+//用final修饰的引用数据类型，地址无法被更改，但内容可以更改
+class Ca1 {
+	//没有被final修饰的数组类型数据，可以更改其地址
+	public int[] arr = {1,2,3};
+	public void methodC1() {
+		System.out.println("arr[0] = " + arr[0]);
+	}
+	public int[] arr2 = {4,5,6};
+	public void methodC2() {
+		arr = arr2;
+	}
+	public void methodC3() {
+		System.out.println("arr[0] = " + arr[0]);
+	}
+	//用final修饰的引用数据类型，地址无法被更改，但内容可以更改
+	public final int[] arr3 = {11,22,33};
+	public int[] arr4 = {44,55,66};
+	public void methodC4() {
+		//arr3 = arr4;//无法更改被final修饰的地址值
+	}
+	public void methodC5() {
+		System.out.println("arr3[0] = "+arr3[0]);
+		System.out.println("reload");
+		arr3[0] = 0;
+		System.out.println("arr3[0] = "+arr3[0]);
+	}
+}
+
+/*
+ * 	例程编号：070
+ * 	描述：
+ * 		用猫狗案例体现Java的多态特性
+ * 		
+ * 	说明：
+ * 	（0）简单来说，多态就是通过实例化下层对象，然后把地址值赋给上层引用，
+ * 		并利用上层引用访问继承自同一个上层的不同下层实例的过程。
+ * 	（1）同一个对象在不同时刻体现出来的不同状态。
+ * 	（2）多态的前提：
+ * 			A:有继承或者实现关系。
+ * 			B:有方法重写。
+ * 			C:有父类或者父接口引用指向子类对象。
+ * 		
+ * 		多态的分类：
+ * 			A:具体类多态
+ * 				class Fu {}
+ * 				class Zi extends Fu {}
+ * 				Fu f = new Zi();
+ * 			B:抽象类多态
+ * 				abstract class Fu {}
+ * 				class Zi extends Fu{}
+ * 				Fu f = new Zi();
+ * 			C:接口多态
+ * 				interface class Fu {}
+ * 				class Zi implements Fu {}
+ * 				Fu f = new Zi();
+ *	（3）多态中的成员访问特点
+ * 		A:成员变量
+ * 			编译看左边，运行看左边
+ * 		B:构造方法
+ * 			子类的构造都会默认访问父类构造
+ * 		C:成员方法
+ * 			编译看左边，运行看右边
+ * 		D:静态方法
+ * 			编译看左边，运行看左边
+ * 		（关键是，只有方法有重写，所以成员方法的运行才是看右边
+ * 	（4）多态的好处：
+ * 		A:提高代码的维护性（继承体现）
+ * 		B:提高方法的扩展性（多态体现）
+ * 	（5）多态的弊端：
+ * 		父类的对象无法使用子类对象的特定功能
+ * 		（子类可以当做父类使用，但父类不能作为子类使用）
+ * 	（6）多态中的转型
+ * 		A:向上转型——从子到父
+ * 		B:向下转型——从父到子
+ */
+ 
+//例程
+class Animal {
+	private String name = "奇怪的动物";
+	private int age = 1;
+	
+	public Animal() {
+		System.out.println("进入了动物类的无参构造方法了");
+		setName("不知名动物");
+		setAge(2);
+	}
+	
+	public Animal(String name, int age) {
+		System.out.println("进入了动物类的带参构造方法了");
+		setName(name);
+		setAge(age);
+	}
+	public String getName() {
+		System.out.println("动物类的getName方法");
+		return name;
+	}
+	public void setName(String name) {
+		System.out.println("动物类的setName方法");
+		this.name = name;
+	}
+	public int getAge() {
+		System.out.println("动物类的getAge方法");
+		return age;
+	}
+	public void setAge(int age) {
+		System.out.println("动物类的setAge方法");
+		this.age = age;
+	}
+	public void showInfo() {
+		System.out.println("动物的名字叫"+getName()+","+getAge()+"岁了");
+	}
+	public void job() {
+		System.out.println("动物的工作就是生存.");
+	}
+}
+
+class Dog extends Animal{
+	private String name = "奇怪的狗";
+	private int age = 11;
+	public Dog() {
+		//super("不知名的狗", 22);
+		System.out.println("进入了狗类的无参构造方法");
+	}
+	public Dog(String name, int age) {
+		super(name,age);
+		System.out.println("进入了狗类的带参构造方法");
+	}
+	/*
+	public String getName() {
+		System.out.println("狗类的getName方法");
+		return name;
+	}
+	public int getAge() {
+		System.out.println("狗类的getAge方法");
+		return age;
+	}
+	public void showInfo() {
+		System.out.println("狗的名字叫"+getName()+","+getAge()+"岁了");
+	}
+	*/
+	public String getZiName() {
+		System.out.println("狗类的getName方法");
+		return name;
+	}
+	public int getZiAge() {
+		System.out.println("狗类的getAge方法");
+		return age;
+	}
+	public void showZiInfo() {
+		System.out.println("狗的名字叫"+getZiName()+","+getZiAge()+"岁了");
+	}
+	
+	public void job() {
+		//子类覆盖了父类的方法
+		System.out.println("狗的工作就是看门！");
+	}
+	public void play() {
+		//子类特有的方法
+		System.out.println("狗喜欢玩皮球~");
+	}
+}
+
+public class Demo {
+	public static void main(String[] args) {
+		System.out.println("---动物 = 动物---");
+		//动物类的无参构造
+		Animal a = new Animal();
+		a.showInfo();
+		a.job();
+		System.out.println("---动物 = 动物---");
+		//动物类的带参构造
+		a = new Animal("啊1",3);
+		a.showInfo();
+		a.job();
+		System.out.println("---动物 = 狗---");
+		//测试多态
+		a = new Dog();
+		a.showInfo();
+		//使用继承来的父类方法，访问的也是父类的成员变量
+		//因为showInfo用的是父类中的getName和getAge
+		//*************************************************************
+		//如果想访问子类的成员变量（变量名和父类的一样），                    
+		//除非在子类覆盖showInfo、getName、getAge方法
+		//或者干脆重新写showZiInfo,getZiname、getZiAge三个方法来访问子类  
+		//这是因为，成员变量即使是同名，但却用了private修饰，因此无法访问
+		//*************************************************************
+		a.job();
+		//a.play();无法用父类的对象来访问子类的方法
+		System.out.println("---狗 = 狗---");
+		Dog d = (Dog)a;
+		d.showInfo();
+		d.showZiInfo();
+		d.job();
+		d.play();//强制类型转换后，可以用子类的对象来访问子类的方法了
+	}
+}
+
+/*
+ * 	例程编号：071
+ * 	描述：
+ * 		多态案例，孔子爹故事
+ * 	说明：
+ * 		1）通过子类的地址赋值给父类对象（向上转型），
+ * 			父类对象能访使用子类覆盖后的成员变量和方法，但无法使用子类特有的方法
+ * 		2）而把这个父类对象赋值给一个子类对象（向下转型），
+ * 			这个子类对象就能使用子类的成员变量和方法了
+ */
+
+//例程
+class KongFather {
+	//孔子爹，40岁
+	public int age = 40;
+	public KongFather() {}
+	//会教Java
+	public void teach() {
+		System.out.println("会教Java");
+	}
+}
+
+class Kong extends KongFather {
+	//孔子，20岁
+	public int age = 20;
+	public Kong() {}
+	//会教论语，和他爹不一样
+	public void teach() {
+		System.out.println("会教论语");
+	}
+	//而且还会打英雄联盟，而他爹不会
+	public void play() {
+		System.out.println("打英雄联盟");
+	}
+}
+
+public class Demo {
+	public static void main(String[] args) {
+		System.out.println("孔子装成孔子爹，想出门教Java（向上转型）");
+		KongFather kf = new Kong();
+		System.out.println("他现在看起来有"+kf.age+"岁了！");
+		System.out.println("当他开口想教Java的时候却发现，他只");
+		kf.teach();
+		System.out.println("由于现在他装作他爹，所以他现在无法玩英雄联盟");
+		//kf.play();
+		System.out.println("因此，他只好回家了");
+		System.out.println("回家后，他立马换回自己的衣服（向下转型");
+		Kong k = (Kong)kf;
+		System.out.println("他现在又变回"+k.age+"岁了！");
+		System.out.println("并且，又可以");
+		k.play();
+	}
+}
+
+/*
+ * 	例程编号：072
+ * 	描述：
+ * 		抽象类，老师案例
+ * 	说明：
+ *	抽象类
+ *	（1）把多个共性的东西提取到一个类中，这与类的继承相似，但如果继承之后的某些方法
+ *		一定会被重写，这个时候，对于这些一定会被重写的方法，就不能给出具体的方法体。
+ *		没有方法体的方法，被称为抽象方法，包含抽象方法的类，被称作抽象类。
+ *	（2）抽象类的特点
+ *		A:抽象类和抽象方法必须用关键字abstract修饰
+ *		B:抽象类中不一定有抽象方法，但是有抽象方法的类一定是抽象类
+ *		C:抽象类不能实例化
+ *		D:抽象类的子类：
+ *			a:可以是一个抽象类。
+ *			b:可以是一个具体类，这个类必须重写抽象类中的所有抽象方法
+ *	（3）抽象类的成员特点：
+ *		A:成员变量
+ *			有变量，有常量
+ *		B:构造方法
+ *			有构造方法
+ *		C:成员方法
+ *			有抽象，有非抽象
+ *	（4）抽象类的练习
+ *		A:猫狗案例练习
+ *		B:老师案例练习
+ *		C:学生案例练习
+ *		D:员工案例练习
+ *	（5）抽象类的几个小问题
+ *		A:抽象类有构造方法，但是不能实例化，其构造方法的作用是用于访问父类数据的初始化
+ *		B:一个类如果没有抽象方法，却被定义为抽象类，起作用是为了不让给该类创建对象
+ *		C:abstract不能和哪些关键字共存
+ *			a:final		冲突。（被final修饰的类无法被继承，而抽象类一定要被继承）
+ *			b:private	冲突。（被final修饰的方法无法被重写，但是抽象方法一定要被重写）
+ *			c:static	无意义	
+ */
+
+//例程
+//JavaSE教师和JavaEE的教师，都可以抽象为老师，只是教的内容不一样
+//因此，可以定义一个教师的抽象类
+abstract class Teacher {
+	private String name;
+	
+	public Teacher() {}
+	public Teacher(String name) {
+		setName(name);
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void info() {
+		System.out.println("他的名字叫"+getName());
+	}
+	abstract public void course();
+	public void show() {
+		info();
+		course();
+	}
+}
+
+//教JavaSE教师继承教师类
+class TeacherJavaSE extends Teacher{
+	public TeacherJavaSE() {}
+	public TeacherJavaSE(String name) {
+		super(name);
+	}
+	public void course() {
+		System.out.println("他教的是JavaSE");
+	}
+}
+//教JavaEE教师继承教师类
+class TeacherJavaEE extends Teacher{
+	public TeacherJavaEE() {}
+	public TeacherJavaEE(String name) {
+		super(name);
+	}
+	public void course() {
+		System.out.println("他教的是JavaEE");
+	}
+}
+
+public class Demo {
+	public static void main(String[] args) {
+		TeacherJavaSE jse = new TeacherJavaSE();
+		jse.setName("Jaco");
+		jse.show();
+		System.out.println("------");
+		TeacherJavaEE jee = new TeacherJavaEE("Lucy");
+		jee.show();
+	}
+}
+
+/*
+ * 	例程编号：073
+ * 	描述：
+ * 		抽象类与接口综合案例，猫狗案例，加入跳火圈功能
+ * 	说明：
+ * 		猫狗都有名字，都会睡觉，于是，可以定义一个动物的父类
+ * 		猫狗吃的东西不一样，于是，可以定义一个抽象类
+ * 		有些猫狗还会跳火圈，于是，可以定义一个抽象类
+ * 		于是，我们可以这么搞：
+ * 		具体类：
+ * 			普通猫，超级猫，普通狗，超级狗
+ * 		抽象类：
+ * 			动物
+ * 		接口：
+ * 			跳火圈
+ */
+
+//例程
+interface Jumping{
+	//定义超级猫和超级狗的额外的跳火圈功能
+	public abstract void jump();
+}
+
+abstract class Animal{
+	private String name;
+	private int age;
+	public Animal() {}
+	public Animal(String name, int age) {
+		setName(name);
+		setAge(age);
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public void showInfo() {
+		System.out.println("它叫"+getName()+", "+getAge()+"岁了");
+	}
+	public void sleep() {
+		System.out.println("任何动物都要睡觉");
+	}
+	abstract public void eat();
+}
+
+//普通猫
+class Cat extends Animal {
+	public Cat() {}
+	public Cat(String name, int age) {
+		super(name, age);
+	}
+	public void eat() {
+		System.out.println("猫吃鱼");
+	}
+}
+//超级猫
+class SuperCat extends Cat implements Jumping{
+	public SuperCat() {}
+	public SuperCat(String name, int age) {
+		super(name, age);
+	}
+	public void jump() {
+		System.out.println("超级猫会跳火圈");
+	}
+}
+//普通狗
+class Dog extends Animal {
+	public Dog() {}
+	public Dog(String name, int age) {
+		super(name, age);
+	}
+	public void eat() {
+		System.out.println("狗吃肉");
+	}
+}
+//超级狗
+class SuperDog extends Dog implements Jumping{
+	public SuperDog() {}
+	public SuperDog(String name, int age) {
+		super(name, age);
+	}
+	public void jump() {
+		System.out.println("超级狗会跳火圈");
+	}
+}
+public class Demo {
+	public static void main(String[] args) {
+		//测试普通猫
+		Cat c = new Cat();
+		c.setName("普通猫1号");
+		c.setAge(2);
+		c.showInfo();
+		c.eat();
+		//c.jump();//因为它是个普通猫，所以不会跳火圈
+		System.out.println("------");
+		//测试超级猫
+		SuperCat sc = new SuperCat();
+		sc.setName("超级猫1号");
+		sc.setAge(3);
+		sc.showInfo();
+		sc.eat();
+		sc.jump();
+		System.out.println("------");
+		//测试普通狗
+		Dog d = new Dog("普通狗1号", 4);
+		d.showInfo();
+		d.eat();
+		//d.jump();//普通狗也很蠢，不会跳火圈
+		System.out.println("------");
+		SuperDog sd = new SuperDog("超级狗1号", 5);
+		sd.showInfo();
+		sd.eat();
+		sd.jump();
+	}
+}
+
+/*
+ * 	例程编号：074
+ * 	描述：
+ * 		抽象类和接口类综合案例，学生老师案例
+ * 	说明：
+ * 		1.先分析，从具体到抽象
+ * 			具体类：
+ * 				学生类，老师类（老师会弹吉他）
+ * 			抽象类：
+ * 				人类（学生和老师吃得东西不一样）
+ * 			接口类：
+ * 				弹吉他
+ * 		2.再实现，从抽象到具体
+ */
+
+//例程
+//接口类，弹吉他
+interface PlayMusic {
+	public abstract void playGuitar();
+}
+//抽象类，人类
+abstract class Person {
+	private String name;
+	private int age;
+	public Person() {}
+	public Person(String name, int age) {
+		setName(name);
+		setAge(age);
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public void showInfo() {
+		System.out.println("这个人的名字叫"+getName()+","+getAge()+"岁了");
+	}
+	public void sleep() {
+		System.out.println("人觉得困了就想睡觉");
+	}
+	public abstract void eat();
+}
+//具体类，学生
+class Student extends Person{
+	public Student() {}
+	public Student(String name, int age) {
+		super(name, age);
+	}
+	public void eat() {
+		System.out.println("学生喜欢吃日本料理");
+	}
+}
+//具体类，老师（老师会弹吉他）
+class Teacher extends Person implements PlayMusic{
+	public Teacher() {}
+	public Teacher(String name, int age) {
+		super(name,age);
+	}
+	public void eat() {
+		System.out.println("老师年纪大，喜欢喝功夫茶");
+	}
+	public void playGuitar() {
+		System.out.println("老师会弹吉他超牛逼");
+	}
+}
+
+public class Demo {
+	public static void main(String[] args) {
+		//测试学生类
+		Student s = new Student("Haruka", 14);
+		s.showInfo();
+		s.sleep();
+		s.eat();
+		//s.playGuitar();//学生没有实现弹吉他的接口
+		System.out.println("------");
+		//测试老师类
+		Teacher t = new Teacher("Junkai",33);
+		t.showInfo();
+		t.sleep();
+		t.eat();
+		t.playGuitar();
+	}
+}
+
+
+
+
+
+
+
+
+
+
